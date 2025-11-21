@@ -3,321 +3,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dossiê de Análise de Processos | Ecossistema Live</title>
+    <title>Análise Profunda (AS-IS) | Karine - Casa Goianita</title>
+    
+    <!-- Fontes (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* =========================================
+           1. TOKENS E BASE (Brand Core - Live V3)
+           ========================================= */
         :root {
-            --live-black: #1a1a1a;
-            --live-blue: #004aad; /* Azul Institucional forte */
-            --live-gray: #f4f4f4;
-            --alert-red: #bf2a2a;
-            --text-body: #333333;
-            --border-light: #e0e0e0;
+            /* Paleta Principal */
+            --primary-bg: #06192a;      /* Azul Petróleo */
+            --card-bg: #0A243D;         /* Azul Escuro */
+            --accent-color: #00e800;    /* Verde Vibrante */
+            --danger-color: #ff4d4d;    /* Vermelho Alerta */
+            --info-color: #00d2ff;      /* Azul Info */
+            
+            /* Textos */
+            --text-primary: #ffffff;
+            --text-muted: #cccccc;
+            --text-subtle: #a0a0a0;
+            
+            /* Bordas e Efeitos */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-glow: 0 0 8px rgba(0, 232, 0, 0.7);
+            
+            /* Tipografia */
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Merriweather', serif; /* Para Citações e Diagnóstico */
+            
+            /* Espaçamento */
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 6rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #ffffff;
-            color: var(--text-body);
-            margin: 0;
-            padding: 0;
-            line-height: 1.5;
+            background-color: var(--primary-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* HEADER ESTILO LIVE */
-        header {
-            background-color: var(--live-black);
-            color: white;
-            padding: 40px 20px;
-            border-bottom: 6px solid var(--live-blue);
-        }
-
-        .header-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        header .subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-top: 10px;
-            display: block;
-        }
-
-        header .meta {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #cccccc;
-        }
-
-        /* CONTAINER */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* SECTION STYLING */
-        section {
-            margin-bottom: 60px;
-            border-left: 1px solid var(--border-light);
-            padding-left: 30px;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            color: var(--live-black);
-            border-bottom: 2px solid var(--live-black);
-            padding-bottom: 10px;
-            margin-top: 0;
-            text-transform: uppercase;
+        /* Tipografia */
+        h1, h2, h3, h4 {
+            color: var(--text-primary);
             font-weight: 700;
         }
 
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            margin-top: var(--space-lg);
+        }
+
         h3 {
-            font-size: 1.3rem;
-            color: var(--live-blue);
-            margin-top: 30px;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Quote Style (Importante para as citações) */
+        blockquote {
+            font-family: var(--font-secondary);
+            font-style: italic;
+            border-left: 3px solid var(--danger-color); /* Vermelho para destacar a dor */
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #fff;
+            background: rgba(255, 77, 77, 0.05);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        blockquote span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-subtle);
+            margin-top: 10px;
+            font-family: var(--font-primary);
+            font-style: normal;
             font-weight: 600;
         }
 
-        /* GRID DE DADOS */
-        .data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        /* BOX DE EVIDÊNCIA (A "ARMA" DA CONSULTORIA) */
-        .evidence-box {
-            background-color: var(--live-gray);
-            padding: 20px;
-            border-radius: 4px;
-            border-left: 4px solid var(--live-black);
-            margin: 15px 0;
-        }
-
-        .evidence-box strong {
-            display: block;
-            color: var(--live-blue);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            margin-bottom: 8px;
-        }
-
-        .evidence-box em {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            color: #555;
-            font-size: 1.05rem;
-        }
-
-        /* CAIXA DE ALERTA (GARGALO) */
-        .gargalo-alert {
-            border: 1px solid var(--alert-red);
-            background-color: #fff5f5;
-            padding: 15px;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-
-        .gargalo-alert h4 {
-            color: var(--alert-red);
-            margin: 0 0 5px 0;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-        }
-
-        /* TABELA TÉCNICA */
-        table {
+        /* =========================================
+           2. LAYOUT
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-collapse: collapse;
+            height: 80px;
+            background: rgba(6, 25, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header img {
+            height: 40px;
+            width: auto;
+        }
+
+        main {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: var(--space-sm);
+            padding-right: var(--space-sm);
+            padding-bottom: var(--space-xl);
+        }
+
+        /* =========================================
+           3. COMPONENTES (Live V3)
+           ========================================= */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--space-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: var(--space-sm);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-alert {
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            background: linear-gradient(180deg, rgba(10, 36, 61, 1) 0%, rgba(40, 10, 10, 0.4) 100%);
+        }
+
+        /* Box de Contexto/Disclaimer */
+        .disclaimer-box {
+            background-color: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-left: 4px solid var(--info-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 40px auto;
+            max-width: 900px;
+            text-align: left;
+        }
+        
+        .disclaimer-title {
+            color: var(--info-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .badge-danger { background: rgba(255, 77, 77, 0.2); color: #ff4d4d; border: 1px solid rgba(255, 77, 77, 0.3); }
+        .badge-success { background: rgba(0, 232, 0, 0.1); color: var(--accent-color); border: 1px solid rgba(0, 232, 0, 0.2); }
+        .badge-info { background: rgba(0, 150, 255, 0.1); color: #0096ff; border: 1px solid rgba(0, 150, 255, 0.2); }
+
+        /* Timeline Vertical */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            opacity: 0; /* Para animação */
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-meta {
+            font-size: 0.85rem;
+            color: var(--text-subtle);
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        /* Hero Customizado */
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        .hero-subtitle {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* Botão de Gravação */
+        .btn-recording {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
             margin-top: 20px;
+            font-weight: 600;
+            transition: 0.3s;
             font-size: 0.9rem;
         }
         
-        th {
-            background-color: var(--live-black);
-            color: white;
-            text-align: left;
-            padding: 10px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+        .btn-recording:hover {
+            background-color: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
-        td {
-            border-bottom: 1px solid #ddd;
-            padding: 10px;
-            vertical-align: top;
-        }
-
-        .tag {
-            background: #eee;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .tag.critical { background: var(--alert-red); color: white; }
-
-        /* FOOTER */
+        /* Footer Ajustado */
         footer {
-            text-align: center;
-            padding: 40px;
-            color: #888;
-            font-size: 0.8rem;
-            border-top: 1px solid #eee;
+            background-color: #030c14;
+            padding: 40px 0;
+            text-align: center; /* Centralizado */
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        @media (max-width: 768px) {
-            .data-grid { grid-template-columns: 1fr; }
-            section { padding-left: 0; border: none; }
+        footer img {
+            height: 30px; /* Reduzido */
+            margin-bottom: 15px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
         }
+        
+        footer img:hover {
+            opacity: 1;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        /* Animação Fade In */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <h1>Relatório Técnico: Análise de Gargalos</h1>
-        <span class="subtitle">Mapeamento AS-IS: Unidade de Negócio Casa Goianita</span>
-        <div class="meta">
-            Área: Operações & Logística | Status: Crítico | Responsável: Consultoria Live
-        </div>
-    </div>
-</header>
+    <header>
+        <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" alt="Live Consultoria">
+    </header>
 
-<div class="container">
-
-    <section>
-        <h2>1. Logística e Distribuição: O Elo Mais Fraco</h2>
-        <p>A operação logística depende exclusivamente do conhecimento tácito de uma supervisora sobrecarregada. Não há sistema de roteirização (WMS/TMS). A decisão é baseada em "feeling" e pressão.</p>
-
-        <div class="data-grid">
-            <div>
-                <h3>Falha de Processo na Origem (T4)</h3>
-                <p>Produtos transferidos da Loja T4 para a Central chegam sistematicamente errados, exigindo retrabalho de conferência na chegada.</p>
-                
-                <div class="evidence-box">
-                    <strong>Estudo de Caso: O Incidente do "Condomínio Golf"</strong>
-                    <em>"O motorista chegou no Condomínio Golf às 16:30 com 18 volumes. Ao desembalar na frente do cliente, faltava uma peça do jogo de jantar (um pires/xícara). A T4 enviou a foto das peças, mas separou errado fisicamente. Resultado: Estresse com cliente VIP e custo de reenvio."</em>
-                </div>
-            </div>
+    <main>
+        
+        <!-- HERO -->
+        <section class="fade-in" style="text-align: center; padding: 60px 0;">
+            <p class="hero-subtitle">Casa Goianita</p>
+            <h1 class="hero-title">Análise Profunda de Cargo <br> <span style="color: var(--accent-color);">(AS-IS)</span></h1>
             
-            <div>
-                <h3>Conflito de Prioridades</h3>
-                <p>A supervisora atua como "amortecedor" entre a ineficiência da loja e a expectativa do cliente.</p>
+            <!-- Botão de Acesso à Gravação -->
+            <a href="https://drive.google.com/drive/folders/117qOS9sp2pG0r6m3-pu6fOy-LO2LXVVX?usp=sharing" target="_blank" class="btn-recording">
+                <i class="fas fa-microphone-lines"></i> Ouvir Gravação da Entrevista
+            </a>
 
-                <div class="gargalo-alert">
-                    <h4>Gargalo Identificado: "Gerente vs. Rota"</h4>
-                    <p>O gerente da loja física, focado na venda imediata, exige entregas fora de rota (ex: Trindade) sem considerar o custo logístico da Van. A supervisora tenta negar ("O motorista está no Aldeia do Vale"), mas é voto vencido.</p>
+            <!-- BLOCO DE CONTEXTO E CONFIDENCIALIDADE (SOLICITADO) -->
+            <div class="disclaimer-box fade-in">
+                <div class="disclaimer-title">
+                    <i class="fas fa-shield-halved"></i> Contexto & Confidencialidade
+                </div>
+                <p style="margin-bottom: 0; color: #e0e0e0; font-size: 0.95rem; line-height: 1.6;">
+                    Este documento tem como <strong>único objetivo</strong> o mapeamento técnico da função, a identificação de gargalos operacionais e a sugestão de melhorias processuais. <br><br>
+                    O colaborador entrevistado teve total liberdade para expressar suas percepções e dificuldades reais (sem filtros), sob garantia de sigilo e segurança psicológica. Este conteúdo é <strong>estritamente confidencial</strong> e não deve, em hipótese alguma, ser utilizado para fins punitivos, constrangimento ou retaliação por parte da liderança.
+                </p>
+            </div>
+        </section>
+
+        <!-- BLOCO 1: O FATOR HUMANO (Saúde Mental e Reconhecimento) -->
+        <section class="fade-in">
+            <h2>1. O Fator Humano: Invisibilidade e Sobrecarga</h2>
+            <p>A transcrição revela um quadro grave de desmotivação causado pela percepção de injustiça e falta de suporte da liderança imediata (Gerência e Proprietários).</p>
+            
+            <div class="grid-2">
+                <!-- Card: O Incidente do Almoço -->
+                <div class="card card-alert">
+                    <span class="badge badge-danger">Ponto de Ruptura</span>
+                    <h3>O Incidente do Almoço (Desrespeito)</h3>
+                    <p>O relato mais crítico da entrevista. Karine precisou fechar a loja para almoçar, pois não havia quem a cobrisse, e foi repreendida posteriormente.</p>
+                    <blockquote>
+                        "Eu chamei o Adriano [Gerente]. Ele falou que não podia colocar ninguém aqui... Eu falei: 'Então vou colocar uma placa na porta e vou almoçar'... A Cláudia [Proprietária] mandou mensagem desaforada... Eu falei: 'Cláudia, eu não sabia que tinha que te avisar que tenho que tirar hora de almoço. O meu contrato fala que eu tenho uma hora'."
+                        <span>— Transcrição, Minuto 38 (Aprox)</span>
+                    </blockquote>
+                    <p style="font-size: 0.9rem;"><strong>Análise:</strong> A colaboradora sente que direitos básicos (alimentação) são tratados como favores. A reação da diretoria foi de cobrança ("você não me avisou") ao invés de suporte.</p>
                 </div>
 
-                <div class="gargalo-alert">
-                    <h4>Gargalo Identificado: "Etiquetagem Manual"</h4>
-                    <p>A supervisora precisa entrar na van e etiquetar volume por volume com caneta ("1/5, 2/5") para que o motorista não entregue uma caixa de Transferência para um Cliente final. Risco altíssimo de erro humano.</p>
+                <!-- Card: Desvalorização Profissional -->
+                <div class="card">
+                    <span class="badge badge-danger">Clima Organizacional</span>
+                    <h3>Percepção de Desvalorização</h3>
+                    <p>Karine relata explicitamente que sua função intelectual e estratégica é vista como "não fazer nada" pelos colegas operacionais e gerência.</p>
+                    <blockquote>
+                        "É o serviço que as pessoas menos dão valor... porque eles acham que eu fico sentada na frente de um computador só. Então eles não levam muito a sério, eles não têm muito respeito pelo serviço."
+                        <span>— Karine sobre a visão da equipe</span>
+                    </blockquote>
+                    <blockquote>
+                        "De vez em quando eu surto... Momento Rivotril... É um fardo muito pesado."
+                        <span>— Karine sobre a Saúde Mental</span>
+                    </blockquote>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section>
-        <h2>2. Gestão de Listas e E-commerce: Ineficiência Digital</h2>
-        <p>A integração entre Loja Física e Site é inexistente (silos de dados). A manutenção das listas é um processo manual de "sanitização" constante.</p>
+        <!-- BLOCO 2: DETALHAMENTO OPERACIONAL (Micro-Tasks) -->
+        <section class="fade-in">
+            <h2>2. Micro-Gerenciamento Operacional</h2>
+            <p>Abaixo, o detalhamento técnico das tarefas que consomem o dia da colaboradora, revelando a complexidade burocrática oculta.</p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Processo</th>
-                    <th>Descrição do Procedimento (Micro-tarefa)</th>
-                    <th>Risco / Impacto</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span class="tag critical">Crítico</span><br>Manutenção de Estoque</td>
-                    <td>Para cada lista (100-180 itens), a supervisora confere item a item no PMenu. Se acabou na loja, ela deve <strong>entrar no admin do site e excluir manualmente</strong> cada produto esgotado.</td>
-                    <td>Perda massiva de produtividade. Se a página atualiza ou o telefone toca, ela perde o progresso e recomeça do zero.</td>
-                </tr>
-                <tr>
-                    <td><span class="tag">Alto</span><br>Venda de Ilusão</td>
-                    <td>O site continua vendendo produtos que a loja física já vendeu, pois não há baixa automática de reserva.</td>
-                    <td><strong>Caso Real: O Liquidificador Oster Vermelho.</strong> Uma noiva aguardou mais de 1 ano por um produto que constava na lista, mas não existia no estoque nem no fornecedor.</td>
-                </tr>
-                <tr>
-                    <td><span class="tag">Médio</span><br>Burocracia de Crédito</td>
-                    <td>Geração de múltiplos "cartões de crédito" físicos para cada item faltante. Noivas acumulam diversos cartões de valores picados.</td>
-                    <td>Experiência do cliente negativa ("bololô de cartões"). Se a noiva perde o cartão, paga <strong>taxa de R$ 30,00</strong> por 2ª via, gerando atrito desnecessário.</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h2>3. Engenharia Fiscal e "Sistemas-Sombra"</h2>
-        <p>O ERP atual (PMenu) é considerado não-confiável pela equipe operacional, gerando a necessidade de processos paralelos em papel.</p>
-
-        <div class="data-grid">
-            <div>
-                <h3>A "Gambiarra" da Devolução</h3>
-                <p>O sistema não possui fluxo nativo de troca eficiente. Para um produto retornar ao estoque, é necessário simular uma venda.</p>
-                <ul style="font-size: 0.9rem; color: #555; margin-top: 10px;">
-                    <li><strong>Passo 1:</strong> Receber produto físico.</li>
-                    <li><strong>Passo 2:</strong> Separar por CNPJ (Loja 85, T4, Marista).</li>
-                    <li><strong>Passo 3:</strong> Lançar no sistema como "Venda Negativa" (Ex: -R$ 199,00).</li>
-                    <li><strong>Passo 4:</strong> Emitir Nota de Devolução para abater o CFOP da venda original.</li>
-                </ul>
-            </div>
-            <div>
-                <h3>A Cultura do Papel</h3>
-                <div class="evidence-box">
-                    <strong>Evidência de Descrédito no Software</strong>
-                    <em>"Eu imprimo tudo e guardo em caixas... porque se alguma venda 'some' do sistema PMenu, eu não posso confiar. Preciso ter o papel assinado pela noiva."</em>
+            <div class="timeline">
+                
+                <!-- Processo: Logística -->
+                <div class="timeline-item fade-in">
+                    <span class="badge badge-info">08:00 - 09:00</span>
+                    <h3 class="timeline-title">Logística e Roteirização "Manual"</h3>
+                    <div class="timeline-meta">Ferramentas: WhatsApp, Intuição, Telefone</div>
+                    <div class="card">
+                        <ul style="padding-left: 20px; color: var(--text-muted);">
+                            <li><strong>Conflito de Recursos:</strong> Só existe 1 motorista de Van. Karine precisa decidir entre fazer a "Transferência entre Lojas" (T4 -> Loja 85) ou "Entrega ao Cliente".</li>
+                            <li><strong>Roteirização Mental:</strong> Ela define a rota baseada na lógica geográfica para economizar combustível (Ex: "Se vai pro Aldeia do Vale, já faz Aruanã e Alphaville"). O sistema não faz isso.</li>
+                            <li><strong>Micro-Gestão do Motorista:</strong> "Ligo pro Adriano: 'Libera o motorista'. Preciso que ele saia... fico pegando no pé".</li>
+                        </ul>
+                    </div>
                 </div>
-                <p>Isso gera custo de armazenamento, papel e tempo de arquivamento, além de insegurança jurídica (LGPD).</p>
-            </div>
-        </div>
-    </section>
 
-    <section>
-        <h2>4. Análise Cultural e Risco Trabalhista (Social)</h2>
-        <p>O ambiente de trabalho apresenta traços de toxicidade, comunicação violenta e risco de passivo trabalhista.</p>
+                <!-- Processo: Troca e Venda Negativa -->
+                <div class="timeline-item fade-in">
+                    <span class="badge badge-info">Processo Crítico</span>
+                    <h3 class="timeline-title">A Engenharia da "Venda Negativa"</h3>
+                    <div class="timeline-meta">Ferramentas: P-Menu, Impressora, Carto</div>
+                    <p>Quando a noiva devolve um presente, o processo contábil é complexo e arriscado:</p>
+                    <div class="card">
+                        <ol style="padding-left: 20px; color: var(--text-muted);">
+                            <li style="margin-bottom: 10px;"><strong>Conferência Física:</strong> Abre caixa por caixa (faqueiros, jogos de jantar) para ver se não falta peça.</li>
+                            <li style="margin-bottom: 10px;"><strong>Entrada no Sistema:</strong> O sistema não tem "troca simples". Karine lança uma <strong>Venda com Valor Negativo</strong> (Ex: -R$ 199,00).</li>
+                            <li style="margin-bottom: 10px;"><strong>Emissão de Nota Fiscal:</strong> Ela precisa emitir notas fiscais de devolução <em>separadas por loja de origem</em>. Se a noiva trouxe 10 presentes de 3 lojas diferentes, ela emite notas fiscais diferentes para cada CNPJ (Loja 85, Bueno, Marista).</li>
+                            <li><strong>Geração do Crédito:</strong> Criação do cartão físico (Carto). Se a noiva perder esse cartão, paga R$ 30,00 (fonte de atrito constante).</li>
+                        </ol>
+                    </div>
+                </div>
 
-        <div class="evidence-box" style="border-left-color: var(--alert-red);">
-            <strong>Ponto Crítico: O Incidente do Almoço</strong>
-            <em>"Fui questionada de forma desaforada por uma sócia (Cláudia) por ter saído para almoçar. O gerente (Adriano) disse que não tinha quem me cobrisse e que eu me virasse. Tive que trancar a sala e levar o controle para garantir meu direito de 1 hora de refeição."</em>
-        </div>
+                <!-- Processo: Listas de Casamento -->
+                <div class="timeline-item fade-in">
+                    <span class="badge badge-info">Gargalo Máximo</span>
+                    <h3 class="timeline-title">Gestão de Listas e o "Abismo" do Estoque</h3>
+                    <div class="timeline-meta">Ferramentas: Papel, Agência C1, Vtex (Admin)</div>
+                    <div class="card">
+                        <p>A manutenção das listas é feita de forma artesanal e exaustiva:</p>
+                        <ul style="padding-left: 20px; margin-top: 10px; color: var(--text-muted);">
+                            <li style="margin-bottom: 8px;"><strong>Conferência Unitária:</strong> "Tenho que conferir produto por produto no P-Menu para ver se tem estoque... Listas tem 150, 180 itens."</li>
+                            <li style="margin-bottom: 8px;"><strong>Edição Manual de Preços:</strong> Antes de enviar a lista para a loja, ela imprime e corrige preços à mão ou no Excel se houver divergência.</li>
+                            <li style="margin-bottom: 8px;"><strong>Atualização no Site (Vtex):</strong> Se acabou na loja física, ela precisa entrar no admin da Vtex, buscar o SKU (código por código) e inativar o produto para não vender online sem estoque.</li>
+                            <li style="border-left: 2px solid var(--danger-color); padding-left: 10px; margin-top: 10px;">
+                                <em>"A noiva ficou mais de um ano esperando um liquidificador Oster Vermelho que estava na lista, mas não tinha no estoque nem no fornecedor."</em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="data-grid" style="margin-top: 30px;">
-            <div>
-                <h3>Sintomas de Burnout</h3>
-                <p>A colaboradora descreve sua função como "Terapia" para gerentes estressados e relata cansaço extremo pela responsabilidade de ser o único ponto de checagem da empresa.</p>
             </div>
-            <div>
-                <h3>Falta de Reconhecimento</h3>
-                <p><em>"Eles acham que eu fico sentada na frente de um computador só."</em> A diretoria desconhece a complexidade do "Backoffice", tratando a função como administrativa simples, quando é o coração logístico da empresa.</p>
+        </section>
+
+        <!-- BLOCO 3: SISTEMAS-SOMBRA -->
+        <section class="fade-in">
+            <h2>3. A Dependência do Papel (Sistemas-Sombra)</h2>
+            <div class="card card-alert" style="border-left: 4px solid #ff4d4d;">
+                <h3>Por que tanto papel?</h3>
+                <p>Karine mantém arquivos físicos rigorosos (caixas de borderôs assinados e extratos impressos) por um motivo alarmante:</p>
+                <h4 style="color: var(--text-primary); margin-top: 15px; font-size: 1.2rem;">Desconfiança no ERP (P-Menu)</h4>
+                <blockquote>
+                    "Eu não posso contar com o P-Menu... Porque se alguma venda some do P-Menu e a noiva precisa saber o que devolveu, eu não posso confiar no sistema. Então eu tenho impresso."
+                </blockquote>
+                <p><strong>Impacto:</strong> Tempo gasto arquivando, espaço físico ocupado e insegurança de dados. Se houver um incêndio, perde-se o histórico de créditos dos clientes.</p>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- BLOCO 4: CONCLUSÃO E PERFIL -->
+        <section class="fade-in">
+            <h2>4. Perfil da Colaboradora</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="color: #fff;">Acúmulo de Funções (Há 2 Anos)</h3>
+                    <p>Originalmente Supervisora de Trocas.
+                    <br>Há 2 anos, a responsável pela logística foi dispensada.
+                    <br>Karine absorveu: Roteirização, Cobrança de Estoquista, Resolução de Atrasos e Conferência de Carga.</p>
+                    <p style="color: var(--accent-color); font-weight: bold; margin-top: 10px;">Sem ajuste salarial ou de cargo mencionado.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #fff;">Competências Demonstradas</h3>
+                    <p>Apesar da falta de ferramentas, demonstra:</p>
+                    <ul style="list-style: none; margin-top: 10px;">
+                        <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Resiliência:</strong> Resolve problemas complexos sem autonomia formal.</li>
+                        <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Visão Sistêmica:</strong> Entende o fluxo entre Lojas, Site e Depósito melhor que os gerentes.</li>
+                        <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Organização:</strong> Cria seus próprios sistemas (arquivos) para suprir falhas de TI.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <strong>Ecossistema Live</strong> - Documento Confidencial de Diagnóstico.<br>
-        Este relatório serve como base para o Plano de Ação TO-BE.
+        <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Live Consultoria">
+        <p style="margin-top: 10px;">Relatório Confidencial | Metodologia Live V3</p>
     </footer>
 
-</div>
+    <!-- Scripts de Animação -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.fade-in, .timeline-item, .disclaimer-box');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
