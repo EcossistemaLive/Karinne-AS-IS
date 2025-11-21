@@ -24,6 +24,7 @@
             --accent-color: #00e800;    /* Verde Vibrante */
             --danger-color: #ff4d4d;    /* Vermelho Alerta */
             --info-color: #00d2ff;      /* Azul Info */
+            --warning-color: #ffbb00;   /* Amarelo Alerta */
             
             /* Textos */
             --text-primary: #ffffff;
@@ -163,6 +164,16 @@
             border: 1px solid rgba(255, 77, 77, 0.3);
             background: linear-gradient(180deg, rgba(10, 36, 61, 1) 0%, rgba(40, 10, 10, 0.4) 100%);
         }
+        
+        .card-warning {
+            border: 1px solid rgba(255, 187, 0, 0.3);
+            background: linear-gradient(180deg, rgba(10, 36, 61, 1) 0%, rgba(40, 30, 10, 0.4) 100%);
+        }
+
+        .card-success {
+            border: 1px solid rgba(0, 232, 0, 0.3);
+            background: linear-gradient(180deg, rgba(10, 36, 61, 1) 0%, rgba(0, 40, 0, 0.2) 100%);
+        }
 
         /* Box de Contexto/Disclaimer */
         .disclaimer-box {
@@ -195,6 +206,16 @@
         @media (min-width: 768px) {
             .grid-2 { grid-template-columns: 1fr 1fr; }
         }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+
+        @media (min-width: 768px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
 
         /* Badges */
         .badge {
@@ -209,6 +230,7 @@
         }
 
         .badge-danger { background: rgba(255, 77, 77, 0.2); color: #ff4d4d; border: 1px solid rgba(255, 77, 77, 0.3); }
+        .badge-warning { background: rgba(255, 187, 0, 0.2); color: #ffbb00; border: 1px solid rgba(255, 187, 0, 0.3); }
         .badge-success { background: rgba(0, 232, 0, 0.1); color: var(--accent-color); border: 1px solid rgba(0, 232, 0, 0.2); }
         .badge-info { background: rgba(0, 150, 255, 0.1); color: #0096ff; border: 1px solid rgba(0, 150, 255, 0.2); }
 
@@ -364,34 +386,39 @@
         <!-- BLOCO 1: O FATOR HUMANO (Saúde Mental e Reconhecimento) -->
         <section class="fade-in">
             <h2>1. O Fator Humano: Invisibilidade e Sobrecarga</h2>
-            <p>A transcrição revela um quadro grave de desmotivação causado pela percepção de injustiça e falta de suporte da liderança imediata (Gerência e Proprietários).</p>
+            <p>A transcrição revela um quadro grave de desmotivação causado pela percepção de injustiça, falta de suporte da liderança e ausência total de backup.</p>
             
-            <div class="grid-2">
+            <div class="grid-3">
                 <!-- Card: O Incidente do Almoço -->
                 <div class="card card-alert">
                     <span class="badge badge-danger">Ponto de Ruptura</span>
-                    <h3>O Incidente do Almoço (Desrespeito)</h3>
+                    <h3>O Incidente do Almoço</h3>
                     <p>O relato mais crítico da entrevista. Karine precisou fechar a loja para almoçar, pois não havia quem a cobrisse, e foi repreendida posteriormente.</p>
                     <blockquote>
-                        "Eu chamei o Adriano [Gerente]. Ele falou que não podia colocar ninguém aqui... Eu falei: 'Então vou colocar uma placa na porta e vou almoçar'... A Cláudia [Proprietária] mandou mensagem desaforada... Eu falei: 'Cláudia, eu não sabia que tinha que te avisar que tenho que tirar hora de almoço. O meu contrato fala que eu tenho uma hora'."
-                        <span>— Transcrição, Minuto 38 (Aprox)</span>
+                        "A Cláudia [Proprietária] mandou mensagem desaforada... Eu falei: 'Cláudia, eu não sabia que tinha que te avisar que tenho que tirar hora de almoço. O meu contrato fala que eu tenho uma hora'."
                     </blockquote>
-                    <p style="font-size: 0.9rem;"><strong>Análise:</strong> A colaboradora sente que direitos básicos (alimentação) são tratados como favores. A reação da diretoria foi de cobrança ("você não me avisou") ao invés de suporte.</p>
+                    <p style="font-size: 0.9rem;"><strong>Análise:</strong> A colaboradora sente que direitos básicos são tratados como favores.</p>
                 </div>
 
                 <!-- Card: Desvalorização Profissional -->
                 <div class="card">
-                    <span class="badge badge-danger">Clima Organizacional</span>
+                    <span class="badge badge-warning">Clima Organizacional</span>
                     <h3>Percepção de Desvalorização</h3>
-                    <p>Karine relata explicitamente que sua função intelectual e estratégica é vista como "não fazer nada" pelos colegas operacionais e gerência.</p>
+                    <p>Karine relata que sua função intelectual e estratégica é vista como "não fazer nada" pelos colegas operacionais e gerência.</p>
                     <blockquote>
-                        "É o serviço que as pessoas menos dão valor... porque eles acham que eu fico sentada na frente de um computador só. Então eles não levam muito a sério, eles não têm muito respeito pelo serviço."
-                        <span>— Karine sobre a visão da equipe</span>
+                        "Eles não levam muito a sério, eles não têm muito respeito pelo serviço."
                     </blockquote>
+                </div>
+
+                <!-- Card: Ausência de Backup (NOVO) -->
+                <div class="card card-alert" style="border: 1px solid #ff4d4d; background: rgba(40, 10, 10, 0.6);">
+                    <span class="badge badge-danger"><i class="fas fa-user-slash"></i> Risco Crítico</span>
+                    <h3>Ausência Total de Suporte</h3>
+                    <p>A colaboradora opera sozinha em funções vitais. Não existe "plano B". Se ela adoece, a logística para.</p>
                     <blockquote>
-                        "De vez em quando eu surto... Momento Rivotril... É um fardo muito pesado."
-                        <span>— Karine sobre a Saúde Mental</span>
+                        "Eu não posso contar com o gerente aqui da loja e nem das outras lojas... Se eu não estou, ninguém faz."
                     </blockquote>
+                    <p style="font-size: 0.9rem; color: #ffaaaa;"><strong>Consequência:</strong> Sensação de aprisionamento ("Fardo pesado") e impossibilidade de tirar folgas ou almoço com tranquilidade.</p>
                 </div>
             </div>
         </section>
@@ -411,7 +438,7 @@
                     <div class="card">
                         <ul style="padding-left: 20px; color: var(--text-muted);">
                             <li><strong>Conflito de Recursos:</strong> Só existe 1 motorista de Van. Karine precisa decidir entre fazer a "Transferência entre Lojas" (T4 -> Loja 85) ou "Entrega ao Cliente".</li>
-                            <li><strong>Roteirização Mental:</strong> Ela define a rota baseada na lógica geográfica para economizar combustível (Ex: "Se vai pro Aldeia do Vale, já faz Aruanã e Alphaville"). O sistema não faz isso.</li>
+                            <li><strong>Roteirização Mental:</strong> Ela define a rota baseada na lógica geográfica para economizar combustível. O sistema não faz isso.</li>
                             <li><strong>Micro-Gestão do Motorista:</strong> "Ligo pro Adriano: 'Libera o motorista'. Preciso que ele saia... fico pegando no pé".</li>
                         </ul>
                     </div>
@@ -425,10 +452,9 @@
                     <p>Quando a noiva devolve um presente, o processo contábil é complexo e arriscado:</p>
                     <div class="card">
                         <ol style="padding-left: 20px; color: var(--text-muted);">
-                            <li style="margin-bottom: 10px;"><strong>Conferência Física:</strong> Abre caixa por caixa (faqueiros, jogos de jantar) para ver se não falta peça.</li>
-                            <li style="margin-bottom: 10px;"><strong>Entrada no Sistema:</strong> O sistema não tem "troca simples". Karine lança uma <strong>Venda com Valor Negativo</strong> (Ex: -R$ 199,00).</li>
-                            <li style="margin-bottom: 10px;"><strong>Emissão de Nota Fiscal:</strong> Ela precisa emitir notas fiscais de devolução <em>separadas por loja de origem</em>. Se a noiva trouxe 10 presentes de 3 lojas diferentes, ela emite notas fiscais diferentes para cada CNPJ (Loja 85, Bueno, Marista).</li>
-                            <li><strong>Geração do Crédito:</strong> Criação do cartão físico (Carto). Se a noiva perder esse cartão, paga R$ 30,00 (fonte de atrito constante).</li>
+                            <li style="margin-bottom: 10px;"><strong>Conferência Física:</strong> Abre caixa por caixa para ver se não falta peça.</li>
+                            <li style="margin-bottom: 10px;"><strong>Entrada no Sistema:</strong> O sistema não tem "troca simples". Karine lança uma <strong>Venda com Valor Negativo</strong>.</li>
+                            <li style="margin-bottom: 10px;"><strong>Emissão de Nota Fiscal:</strong> Ela precisa emitir notas fiscais de devolução <em>separadas por loja de origem</em>.</li>
                         </ol>
                     </div>
                 </div>
@@ -441,9 +467,8 @@
                     <div class="card">
                         <p>A manutenção das listas é feita de forma artesanal e exaustiva:</p>
                         <ul style="padding-left: 20px; margin-top: 10px; color: var(--text-muted);">
-                            <li style="margin-bottom: 8px;"><strong>Conferência Unitária:</strong> "Tenho que conferir produto por produto no P-Menu para ver se tem estoque... Listas tem 150, 180 itens."</li>
-                            <li style="margin-bottom: 8px;"><strong>Edição Manual de Preços:</strong> Antes de enviar a lista para a loja, ela imprime e corrige preços à mão ou no Excel se houver divergência.</li>
-                            <li style="margin-bottom: 8px;"><strong>Atualização no Site (Vtex):</strong> Se acabou na loja física, ela precisa entrar no admin da Vtex, buscar o SKU (código por código) e inativar o produto para não vender online sem estoque.</li>
+                            <li style="margin-bottom: 8px;"><strong>Conferência Unitária:</strong> "Tenho que conferir produto por produto no P-Menu... Listas tem 150, 180 itens."</li>
+                            <li style="margin-bottom: 8px;"><strong>Atualização no Site (Vtex):</strong> Se acabou na loja física, ela precisa entrar no admin da Vtex, buscar o SKU e inativar o produto manualmente.</li>
                             <li style="border-left: 2px solid var(--danger-color); padding-left: 10px; margin-top: 10px;">
                                 <em>"A noiva ficou mais de um ano esperando um liquidificador Oster Vermelho que estava na lista, mas não tinha no estoque nem no fornecedor."</em>
                             </li>
@@ -464,11 +489,11 @@
                 <blockquote>
                     "Eu não posso contar com o P-Menu... Porque se alguma venda some do P-Menu e a noiva precisa saber o que devolveu, eu não posso confiar no sistema. Então eu tenho impresso."
                 </blockquote>
-                <p><strong>Impacto:</strong> Tempo gasto arquivando, espaço físico ocupado e insegurança de dados. Se houver um incêndio, perde-se o histórico de créditos dos clientes.</p>
+                <p><strong>Impacto:</strong> Tempo gasto arquivando, espaço físico ocupado e insegurança de dados.</p>
             </div>
         </section>
 
-        <!-- BLOCO 4: CONCLUSÃO E PERFIL -->
+        <!-- BLOCO 4: PERFIL -->
         <section class="fade-in">
             <h2>4. Perfil da Colaboradora</h2>
             <div class="grid-2">
@@ -484,8 +509,39 @@
                     <p>Apesar da falta de ferramentas, demonstra:</p>
                     <ul style="list-style: none; margin-top: 10px;">
                         <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Resiliência:</strong> Resolve problemas complexos sem autonomia formal.</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Visão Sistêmica:</strong> Entende o fluxo entre Lojas, Site e Depósito melhor que os gerentes.</li>
+                        <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Visão Sistêmica:</strong> Entende o fluxo entre Lojas, Site e Depósito.</li>
                         <li><i class="fas fa-check" style="color: var(--accent-color);"></i> <strong>Organização:</strong> Cria seus próprios sistemas (arquivos) para suprir falhas de TI.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCO 5: RECOMENDAÇÕES E PLANO DE AÇÃO (NOVO) -->
+        <section class="fade-in">
+            <h2>5. Recomendações Estratégicas (Urgentes)</h2>
+            <p>Com base no diagnóstico de risco (Bus Factor 1) e sobrecarga mental, recomendamos as seguintes ações imediatas:</p>
+
+            <div class="grid-2">
+                <!-- Ação 1: Assistente -->
+                <div class="card card-success">
+                    <span class="badge badge-success">Ação Estrutural</span>
+                    <h3>1. Contratação de Assistente Operacional</h3>
+                    <p>É imperativo contratar uma pessoa para assumir a <strong>Logística e Conferência de Estoque</strong>.</p>
+                    <ul style="margin-top:10px; padding-left:20px; color:#ddd;">
+                        <li><strong>Objetivo:</strong> Liberar Karine para focar no estratégico (Customer Success) e Atendimento às Noivas.</li>
+                        <li><strong>Benefício:</strong> Criar redundância (backup) para que Karine possa almoçar, tirar férias ou adoecer sem paralisar a empresa.</li>
+                    </ul>
+                </div>
+
+                <!-- Ação 2: Reconhecimento -->
+                <div class="card card-warning">
+                    <span class="badge badge-warning">Retenção de Talento</span>
+                    <h3>2. Programa de Reconhecimento</h3>
+                    <p>A colaboradora está no limite emocional ("Momento Rivotril"). É necessário intervir:</p>
+                    <ul style="margin-top:10px; padding-left:20px; color:#ddd;">
+                        <li style="margin-bottom:8px;"><strong>Financeiro:</strong> Ajuste salarial ou bônus retroativo pelo acúmulo de função de 2 anos.</li>
+                        <li style="margin-bottom:8px;"><strong>Verbal/Moral:</strong> Feedback estruturado da diretoria reconhecendo a importância do seu papel (tirar a invisibilidade).</li>
+                        <li><strong>Simbolismo:</strong> Formalizar o novo cargo de "Supervisora de Customer Success".</li>
                     </ul>
                 </div>
             </div>
