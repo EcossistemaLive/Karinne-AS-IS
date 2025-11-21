@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapeamento AS-IS | Central de Trocas - Live Consultoria</title>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:ital,wght@0,400;1,700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* 1. TOKENS DE DESIGN (BRAND CORE) */
+        :root {
+            --primary-bg: #06192a;
+            --card-bg: #0A243D;
+            --accent-color: #00e800; /* Verde Vibrante */
+            --text-primary: #ffffff;
+            --text-muted: #cccccc;
+            --text-subtle: #a0a0a0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-glow: 0 0 15px rgba(0, 232, 0, 0.4);
+            
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Merriweather', serif;
+            
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            
+            --header-height: 70px;
+        }
+
+        /* 2. RESET GLOBAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            /* Textura de cubos conforme manual */
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 3. CABEÇALHO E NAVEGAÇÃO */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            padding: 0 5%;
+            background: rgba(6, 25, 42, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .logo-header {
+            height: 32px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        /* 4. ESTRUTURA PRINCIPAL */
+        main {
+            padding-top: calc(var(--header-height) + 40px);
+            padding-bottom: 4rem;
+            padding-left: 5%;
+            padding-right: 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 span {
+            color: var(--accent-color);
+            text-shadow: var(--accent-glow);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: var(--space-lg);
+        }
+
+        /* 5. CARDS DINÂMICOS */
+        .grid-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-subtle);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Tags de Status */
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .tag-danger {
+            background: rgba(255, 71, 87, 0.1);
+            color: #ff4757;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        .tag-warning {
+            background: rgba(255, 165, 2, 0.1);
+            color: #ffa502;
+            border: 1px solid rgba(255, 165, 2, 0.3);
+        }
+
+        .tag-info {
+            background: rgba(0, 232, 0, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(0, 232, 0, 0.3);
+        }
+
+        /* 6. TIMELINE DE PROCESSO (FLUXO) */
+        .process-flow {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .process-step {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 2px dashed rgba(255,255,255,0.1);
+        }
+
+        .process-step:last-child {
+            border-left: none;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-color);
+        }
+
+        .step-time {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        /* 7. QUOTES DE IMPACTO */
+        .quote-box {
+            font-family: var(--font-secondary);
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            background: rgba(255,255,255,0.02);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* 8. RODAPÉ */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Utilitários de Animação */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { display: none; } /* Simplificação para mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" alt="Live Consultoria" class="logo-header">
+        <nav>
+            <ul>
+                <li><a href="#visao-geral">Visão Geral</a></li>
+                <li><a href="#fluxos">Fluxos Críticos</a></li>
+                <li><a href="#riscos">Riscos Humanos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <!-- Hero Section -->
+        <section id="visao-geral" class="reveal">
+            <div class="status-tag tag-danger">Prioridade Crítica</div>
+            <h1>Diagnóstico AS-IS: <br><span>Central de Trocas & Logística</span></h1>
+            <p class="intro-text">
+                Análise profunda do "Gargalo Silencioso" da operação. Mapeamento da sobrecarga funcional, processos manuais de alto risco e passivo trabalhista iminente no setor liderado pela colaboradora Karinne.
+            </p>
+        </section>
+
+        <!-- Card Principal de Diagnóstico -->
+        <section class="reveal">
+            <div class="card" style="border-color: var(--accent-color); background: linear-gradient(145deg, var(--card-bg), rgba(0,232,0,0.05));">
+                <div class="card-icon"><i class="fas fa-user-clock"></i></div>
+                <h3>Dissonância de Papel (Acúmulo de Função)</h3>
+                <div class="quote-box">
+                    "Oficialmente Supervisora de Trocas, na prática atua como Gerente de Logística, Auditora Fiscal e Suporte de TI. Absorveu a função de um FTE dispensado há 2 anos, sem ajuste salarial."
+                </div>
+                <p><strong>Impacto:</strong> Single Point of Failure (Ponto Único de Falha). Se a colaboradora adoece, a logística de entregas e gestão de listas de casamento param.</p>
+            </div>
+        </section>
+
+        <br><br>
+
+        <!-- Seção de Fluxos -->
+        <section id="fluxos">
+            <h2 class="reveal">Fluxos Operacionais Manuais</h2>
+            <div class="grid-dashboard">
+                
+                <!-- Fluxo 1 -->
+                <div class="card reveal">
+                    <div class="status-tag tag-warning">Logística</div>
+                    <div class="card-icon"><i class="fas fa-truck-moving"></i></div>
+                    <h3>Roteirização Humana</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <span class="step-time">08:00 AM</span>
+                            <p>Triagem manual de WhatsApp e cruzamento mental de rotas (Clientes vs. Transferência entre Lojas).</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-time">Gargalo</span>
+                            <p>Negociação de prioridade com depósito para liberar a van.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-time">Contingência</span>
+                            <p>Contratação manual de motoboy para rotas excedentes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fluxo 2 -->
+                <div class="card reveal">
+                    <div class="status-tag tag-danger">Risco Fiscal</div>
+                    <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>A "Venda Negativa"</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <span class="step-time">Entrada</span>
+                            <p>Conferência física peça a peça (ex: contar garfos de faqueiro na frente da cliente).</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-time">Sistema</span>
+                            <p>Execução de "Gambiarra Contábil": Lançar venda nova com valor negativo para abater CFOP.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-time">Arquivo</span>
+                            <p>Impressão e armazenamento físico de comprovantes por desconfiança no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fluxo 3 -->
+                <div class="card reveal">
+                    <div class="status-tag tag-warning">Ineficiência</div>
+                    <div class="card-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>Manutenção de Listas</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <span class="step-time">Auditoria</span>
+                            <p>Conferência linha a linha (180 itens) no PMenu antes de imprimir lista.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-time">Manual</span>
+                            <p>Exclusão manual no site de itens sem estoque físico.</p>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-time">Ruptura</span>
+                            <p>Geração de vouchers (vale-crédito) quando a venda ocorre sem estoque.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção de Riscos Humanos -->
+        <section id="riscos">
+            <h2 class="reveal">Riscos Psicossociais & Cultura</h2>
+            <div class="grid-dashboard">
+                
+                <div class="card reveal">
+                    <div class="card-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Estagnação Salarial</h3>
+                    <p>"E momento salário, né? Nem o extra teve... a pessoa tá no Rivotril pra fazer pra ontem."</p>
+                    <div class="status-tag tag-danger" style="margin-top: 1rem;">Risco Jurídico: Alto</div>
+                </div>
+
+                <div class="card reveal">
+                    <div class="card-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Incidente do Almoço</h3>
+                    <p>Gestão negou cobertura de horário e cobrou a saída legal de forma hostil. Sintoma claro de falta de política de RH.</p>
+                </div>
+
+                <div class="card reveal">
+                    <div class="card-icon"><i class="fas fa-ghost"></i></div>
+                    <h3>Invisibilidade</h3>
+                    <p>"Acham que eu fico sentada na frente de um computador só... não têm respeito pelo serviço." (Desvalorização do trabalho intelectual).</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Logo Live" style="height: 30px; opacity: 0.6;">
+        <p style="margin-top: 1rem; color: var(--text-subtle); font-size: 0.8rem;">CONFIDENCIAL - PROJETO CASA GOIANITA</p>
+    </footer>
+
+    <!-- Script de Interatividade -->
+    <script>
+        // Animação ao Scroll (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Navegação Ativa
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
