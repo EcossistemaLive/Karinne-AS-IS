@@ -3,331 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico Operacional AS-IS | Casa Goianita</title>
+    <title>Dossiê de Análise de Processos | Ecossistema Live</title>
     <style>
         :root {
-            --primary: #003366; /* Azul Corporativo */
-            --secondary: #00509e;
-            --accent: #d9534f; /* Vermelho Alerta */
-            --bg: #f4f7f6;
-            --text: #333;
-            --white: #ffffff;
-            --border: #e0e0e0;
+            --live-black: #1a1a1a;
+            --live-blue: #004aad; /* Azul Institucional forte */
+            --live-gray: #f4f4f4;
+            --alert-red: #bf2a2a;
+            --text-body: #333333;
+            --border-light: #e0e0e0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: var(--text-body);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* Header */
+        /* HEADER ESTILO LIVE */
         header {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: var(--live-black);
+            color: white;
+            padding: 40px 20px;
+            border-bottom: 6px solid var(--live-blue);
         }
 
-        header h1 { margin: 0; font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; }
-        header p { margin: 10px 0 0; opacity: 0.8; font-size: 1.1rem; }
-        .badge { background: var(--accent); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; display: inline-block; margin-top: 10px;}
-
-        /* Container */
-        .container {
-            max-width: 1200px;
+        .header-content {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem;
         }
 
-        /* Grid Layout */
-        .grid-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
-        /* Cards */
-        .card {
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 20px;
-            border-left: 5px solid var(--primary);
-            transition: transform 0.2s;
-        }
-
-        .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .card h3 { color: var(--primary); margin-top: 0; border-bottom: 1px solid var(--border); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
-        .card h3 i { font-size: 1.5rem; opacity: 0.2; }
-
-        /* Timeline Section */
-        .timeline-section {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        /* Detail Lists (The "Meat" of the content) */
-        details {
-            background: #fafafa;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #eee;
-        }
-        
-        summary {
-            padding: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--secondary);
-            list-style: none; /* Hide default arrow */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        summary::-webkit-details-marker { display: none; }
-        
-        summary::after {
-            content: '+'; 
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        details[open] summary::after { content: '-'; }
-        details[open] summary { background-color: #e9ecef; border-bottom: 1px solid #ddd; }
-
-        .detail-content { padding: 15px; font-size: 0.95rem; color: #555; }
-        .detail-content ul { padding-left: 20px; margin: 0; }
-        .detail-content li { margin-bottom: 8px; }
-
-        /* Alerts & Callouts */
-        .alert-box {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-        .danger-box {
-            background-color: #f8d7da;
-            border-left: 5px solid #dc3545;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #777;
-            font-size: 0.9rem;
-            border-top: 1px solid #ddd;
-        }
-
-        /* Quotes */
-        .quote {
-            font-style: italic;
-            color: #666;
-            border-left: 3px solid #aaa;
-            padding-left: 10px;
-            margin: 10px 0;
+        header .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-top: 10px;
             display: block;
         }
 
-        /* Responsive */
+        header .meta {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #cccccc;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION STYLING */
+        section {
+            margin-bottom: 60px;
+            border-left: 1px solid var(--border-light);
+            padding-left: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--live-black);
+            border-bottom: 2px solid var(--live-black);
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--live-blue);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* GRID DE DADOS */
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* BOX DE EVIDÊNCIA (A "ARMA" DA CONSULTORIA) */
+        .evidence-box {
+            background-color: var(--live-gray);
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid var(--live-black);
+            margin: 15px 0;
+        }
+
+        .evidence-box strong {
+            display: block;
+            color: var(--live-blue);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+
+        .evidence-box em {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        /* CAIXA DE ALERTA (GARGALO) */
+        .gargalo-alert {
+            border: 1px solid var(--alert-red);
+            background-color: #fff5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .gargalo-alert h4 {
+            color: var(--alert-red);
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* TABELA TÉCNICA */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        th {
+            background-color: var(--live-black);
+            color: white;
+            text-align: left;
+            padding: 10px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        .tag {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .tag.critical { background: var(--alert-red); color: white; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.8rem;
+            border-top: 1px solid #eee;
+        }
+
         @media (max-width: 768px) {
-            .grid-dashboard { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: 1fr; }
+            section { padding-left: 0; border: none; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Anatomia de uma Função Crítica</h1>
-    <p>Análise detalhada das responsabilidades da Supervisora da Central (Karine)</p>
-    <div class="badge">Relatório Diagnóstico AS-IS - Consultoria de Processos</div>
+    <div class="header-content">
+        <h1>Relatório Técnico: Análise de Gargalos</h1>
+        <span class="subtitle">Mapeamento AS-IS: Unidade de Negócio Casa Goianita</span>
+        <div class="meta">
+            Área: Operações & Logística | Status: Crítico | Responsável: Consultoria Live
+        </div>
+    </div>
 </header>
 
 <div class="container">
 
-    <div style="margin-bottom: 30px;">
-        <h2>Visão Geral: O "Hub" Humano</h2>
-        <p>Abaixo está o detalhamento granular das atividades extraídas da transcrição. O que se vê é um acúmulo severo de funções logísticas, fiscais, comerciais e de suporte em um único indivíduo, operando com sistemas precários.</p>
-    </div>
+    <section>
+        <h2>1. Logística e Distribuição: O Elo Mais Fraco</h2>
+        <p>A operação logística depende exclusivamente do conhecimento tácito de uma supervisora sobrecarregada. Não há sistema de roteirização (WMS/TMS). A decisão é baseada em "feeling" e pressão.</p>
 
-    <div class="grid-dashboard">
-
-        <div class="card">
-            <h3>1. Logística e Entregas <span style="font-size:0.8em">🚛</span></h3>
-            <p><em>"A parte mais cansativa e estressante."</em> Gestão centralizada de 4 unidades + E-commerce.</p>
+        <div class="data-grid">
+            <div>
+                <h3>Falha de Processo na Origem (T4)</h3>
+                <p>Produtos transferidos da Loja T4 para a Central chegam sistematicamente errados, exigindo retrabalho de conferência na chegada.</p>
+                
+                <div class="evidence-box">
+                    <strong>Estudo de Caso: O Incidente do "Condomínio Golf"</strong>
+                    <em>"O motorista chegou no Condomínio Golf às 16:30 com 18 volumes. Ao desembalar na frente do cliente, faltava uma peça do jogo de jantar (um pires/xícara). A T4 enviou a foto das peças, mas separou errado fisicamente. Resultado: Estresse com cliente VIP e custo de reenvio."</em>
+                </div>
+            </div>
             
-            <details>
-                <summary>Gestão de Rotas e Motorista</summary>
-                <div class="detail-content">
-                    <ul>
-                        <li><strong>Roteirização Manual:</strong> Define a rota do único motorista (Van) baseada em "feeling" para economizar combustível (Ex: Encaixar Aldeia do Vale com Portal do Sol).</li>
-                        <li><strong>Conflito de Horários:</strong> Gestão de entregas da Loja Física (com hora marcada: até 9h ou até 14h) versus Transferências de Estoque (morosas).</li>
-                        <li><strong>Pressão em Tempo Real:</strong> Liga para gerentes ("Adriano, libera o motorista") e monitora se o depósito não esqueceu itens.</li>
-                        <li><strong>Gestão de Terceirizados:</strong> Aciona motos via app para urgências quando a Van está longe. Gerente muitas vezes força o uso da Van, aumentando o custo e atraso, por falta de visão sistêmica.</li>
-                    </ul>
+            <div>
+                <h3>Conflito de Prioridades</h3>
+                <p>A supervisora atua como "amortecedor" entre a ineficiência da loja e a expectativa do cliente.</p>
+
+                <div class="gargalo-alert">
+                    <h4>Gargalo Identificado: "Gerente vs. Rota"</h4>
+                    <p>O gerente da loja física, focado na venda imediata, exige entregas fora de rota (ex: Trindade) sem considerar o custo logístico da Van. A supervisora tenta negar ("O motorista está no Aldeia do Vale"), mas é voto vencido.</p>
                 </div>
-            </details>
 
-            <details>
-                <summary>Auditoria Física de Carga (Gargalo)</summary>
-                <div class="detail-content">
-                    <ul>
-                        <li><strong>Conferência de Erros da Origem:</strong> Precisa entrar na van e abrir caixas vindas da T4 ou outras lojas porque frequentemente vêm trocadas (Ex: Jogo de Jantar trocado por Jogo de Copos).</li>
-                        <li><strong>Etiquetagem Manual:</strong> Escreve e cola etiquetas nos volumes (1/5, 2/5) para diferenciar o que é Entrega do Cliente do que é Transferência interna, pois os motoristas confundem.</li>
-                    </ul>
+                <div class="gargalo-alert">
+                    <h4>Gargalo Identificado: "Etiquetagem Manual"</h4>
+                    <p>A supervisora precisa entrar na van e etiquetar volume por volume com caneta ("1/5, 2/5") para que o motorista não entregue uma caixa de Transferência para um Cliente final. Risco altíssimo de erro humano.</p>
                 </div>
-            </details>
-
-            <details>
-                <summary>Burocracia Pós-Entrega</summary>
-                <div class="detail-content">
-                    <ul>
-                        <li><strong>Fechamento de Borderô:</strong> Baixa manual no sistema após retorno.</li>
-                        <li><strong>Arquivo Físico Obrigatório:</strong> Arquiva papéis assinados porque o sistema não registra assinatura/recebimento e clientes reclamam de não recebimento.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-
-        <div class="card">
-            <h3>2. Gestão de Listas <span style="font-size:0.8em">🎁</span></h3>
-            <p>Processo artesanal, lento e sujeito a falha humana devido à falta de integração.</p>
-
-            <details>
-                <summary>Sanitização de Estoque (Crítico)</summary>
-                <div class="detail-content">
-                    <div class="danger-box"><strong>O Grande Vilão:</strong> Uma lista tem 100 a 180 itens. Ela precisa conferir um a um.</div>
-                    <ul>
-                        <li><strong>Conferência Cruzada:</strong> Olha o sistema (PMenu) e compara com a Lista.</li>
-                        <li><strong>Exclusão Manual:</strong> Se acabou na loja física, ela tem que entrar no site e excluir o produto da lista <em>um por um</em>.</li>
-                        <li><strong>Risco de Interrupção:</strong> <em>"Se eu paro para atender um telefone, me perco na página e tenho que começar de novo."</em></li>
-                    </ul>
-                </div>
-            </details>
-
-            <details>
-                <summary>Manutenção e Impressão</summary>
-                <div class="detail-content">
-                    <ul>
-                        <li><strong>Edição de Preços:</strong> Antes de imprimir a lista para a loja física, precisa conferir se houve alteração de preço e editar manualmente no papel/arquivo.</li>
-                        <li><strong>Gestão de Arquivos:</strong> Mantém pastas físicas e digitais organizadas por ano (2024, 2025, 2026) e tipo (Chá, Casamento, Open House).</li>
-                        <li><strong>Atualização de Dados:</strong> Liga para noivas para confirmar endereços e atualiza manualmente nas listas impressas.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-
-        <div class="card">
-            <h3>3. Trocas e Fiscal <span style="font-size:0.8em">🔄</span></h3>
-            <p>Engenharia fiscal complexa para contornar limitações do sistema.</p>
-
-            <details>
-                <summary>O Processo de "Venda Negativa"</summary>
-                <div class="detail-content">
-                    <ul>
-                        <li><strong>Workaround do Sistema:</strong> Para devolver um item ao estoque, ela precisa lançar uma "venda" com valor negativo (-199,90) para gerar a Nota de Devolução (MFE).</li>
-                        <li><strong>Segregação por Loja:</strong> Não pode misturar produtos. Se a noiva traz 10 itens, ela separa por CNPJ de origem (Loja 85 vs T4) e faz processos fiscais distintos.</li>
-                        <li><strong>Conferência Minuciosa:</strong> Conta peças de faqueiros e jogos para garantir integridade antes de aceitar a troca.</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details>
-                <summary>Gestão de Cartões de Crédito/Vale</summary>
-                <div class="detail-content">
-                    <ul>
-                        <li><strong>Emissão:</strong> Cria o cartão físico, cadastra senha, explica validade (1 ano).</li>
-                        <li><strong>Fragmentação:</strong> O sistema gera múltiplos cartões para produtos faltantes. Noivas ficam com "bololô" de cartões.</li>
-                        <li><strong>Suporte Vitalício:</strong> Renova cartões vencidos, emite 2ª via, puxa extratos manuais junto à operadora (Carto) quando a noiva perde o controle.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-
-        <div class="card" style="border-left-color: var(--accent);">
-            <h3>4. O Custo Humano (ESG) <span style="font-size:0.8em">⚠️</span></h3>
-            <p>Riscos trabalhistas e de clima organizacional evidentes.</p>
-
-            <details open>
-                <summary>Violação de Direitos e Cultura</summary>
-                <div class="detail-content">
-                    <div class="danger-box"><strong>Incidente Relatado:</strong> Impedimento/Conflito para tirar hora de almoço.</div>
-                    <ul>
-                        <li><strong>Acúmulo de Função:</strong> Cobre férias e folgas de recepção, abre e fecha loja, liga ar-condicionado e servidores.</li>
-                        <li><strong>Desrespeito:</strong> <em>"Acham que eu só fico sentada no computador"</em>. Sentimento de desvalorização por parte de gerentes e sócios.</li>
-                        <li><strong>Gestão pelo Grito:</strong> Relatos de gerentes gritando e cobranças "desaforadas" via mensagem sem apuração dos fatos.</li>
-                        <li><strong>Infraestrutura:</strong> Equipamentos lentos e internet que cai, obrigando a levar trabalho para casa.</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-
-    </div>
-
-    <div class="timeline-section">
-        <h2>A Rotina: Corrida Contra o Tempo</h2>
-        <p>Um exemplo da sequência de atividades matinais descrita na entrevista:</p>
-        
-        <div style="border-left: 3px solid #ccc; padding-left: 20px; margin-top: 20px;">
-            <div style="margin-bottom: 20px;">
-                <strong>08:00 - Abertura</strong><br>
-                Levantar portas, ligar servidores, ar-condicionado, abrir WhatsApp da loja.
-            </div>
-            <div style="margin-bottom: 20px;">
-                <strong>08:15 - Triagem Logística</strong><br>
-                Verificar mensagens da noite, identificar entregas urgentes (Loja Física) vs Site. Ligar para motorista.
-            </div>
-            <div style="margin-bottom: 20px;">
-                <strong>08:30 - O Quebra-Cabeça da Rota</strong><br>
-                Tentar encaixar a Transferência para T4 com entregas na região. Negociar com depósito para liberarem a carga rápido.
-            </div>
-            <div style="margin-bottom: 20px;">
-                <strong>09:00 às 12:00 - Multitarefa Reativa</strong><br>
-                Enquanto monitora o motorista, atende noivas (presencial - prioridade), responde WhatsApp, confere listas item a item e resolve problemas de gerentes.
-            </div>
-            <div style="margin-bottom: 20px;">
-                <strong>Tarde - O Retorno</strong><br>
-                Receber motorista, conferir borderôs, conferir devoluções físicas, lançar baixas no sistema, arquivar papéis.
             </div>
         </div>
-    </div>
+    </section>
+
+    <section>
+        <h2>2. Gestão de Listas e E-commerce: Ineficiência Digital</h2>
+        <p>A integração entre Loja Física e Site é inexistente (silos de dados). A manutenção das listas é um processo manual de "sanitização" constante.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Processo</th>
+                    <th>Descrição do Procedimento (Micro-tarefa)</th>
+                    <th>Risco / Impacto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tag critical">Crítico</span><br>Manutenção de Estoque</td>
+                    <td>Para cada lista (100-180 itens), a supervisora confere item a item no PMenu. Se acabou na loja, ela deve <strong>entrar no admin do site e excluir manualmente</strong> cada produto esgotado.</td>
+                    <td>Perda massiva de produtividade. Se a página atualiza ou o telefone toca, ela perde o progresso e recomeça do zero.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">Alto</span><br>Venda de Ilusão</td>
+                    <td>O site continua vendendo produtos que a loja física já vendeu, pois não há baixa automática de reserva.</td>
+                    <td><strong>Caso Real: O Liquidificador Oster Vermelho.</strong> Uma noiva aguardou mais de 1 ano por um produto que constava na lista, mas não existia no estoque nem no fornecedor.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">Médio</span><br>Burocracia de Crédito</td>
+                    <td>Geração de múltiplos "cartões de crédito" físicos para cada item faltante. Noivas acumulam diversos cartões de valores picados.</td>
+                    <td>Experiência do cliente negativa ("bololô de cartões"). Se a noiva perde o cartão, paga <strong>taxa de R$ 30,00</strong> por 2ª via, gerando atrito desnecessário.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>3. Engenharia Fiscal e "Sistemas-Sombra"</h2>
+        <p>O ERP atual (PMenu) é considerado não-confiável pela equipe operacional, gerando a necessidade de processos paralelos em papel.</p>
+
+        <div class="data-grid">
+            <div>
+                <h3>A "Gambiarra" da Devolução</h3>
+                <p>O sistema não possui fluxo nativo de troca eficiente. Para um produto retornar ao estoque, é necessário simular uma venda.</p>
+                <ul style="font-size: 0.9rem; color: #555; margin-top: 10px;">
+                    <li><strong>Passo 1:</strong> Receber produto físico.</li>
+                    <li><strong>Passo 2:</strong> Separar por CNPJ (Loja 85, T4, Marista).</li>
+                    <li><strong>Passo 3:</strong> Lançar no sistema como "Venda Negativa" (Ex: -R$ 199,00).</li>
+                    <li><strong>Passo 4:</strong> Emitir Nota de Devolução para abater o CFOP da venda original.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>A Cultura do Papel</h3>
+                <div class="evidence-box">
+                    <strong>Evidência de Descrédito no Software</strong>
+                    <em>"Eu imprimo tudo e guardo em caixas... porque se alguma venda 'some' do sistema PMenu, eu não posso confiar. Preciso ter o papel assinado pela noiva."</em>
+                </div>
+                <p>Isso gera custo de armazenamento, papel e tempo de arquivamento, além de insegurança jurídica (LGPD).</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Análise Cultural e Risco Trabalhista (Social)</h2>
+        <p>O ambiente de trabalho apresenta traços de toxicidade, comunicação violenta e risco de passivo trabalhista.</p>
+
+        <div class="evidence-box" style="border-left-color: var(--alert-red);">
+            <strong>Ponto Crítico: O Incidente do Almoço</strong>
+            <em>"Fui questionada de forma desaforada por uma sócia (Cláudia) por ter saído para almoçar. O gerente (Adriano) disse que não tinha quem me cobrisse e que eu me virasse. Tive que trancar a sala e levar o controle para garantir meu direito de 1 hora de refeição."</em>
+        </div>
+
+        <div class="data-grid" style="margin-top: 30px;">
+            <div>
+                <h3>Sintomas de Burnout</h3>
+                <p>A colaboradora descreve sua função como "Terapia" para gerentes estressados e relata cansaço extremo pela responsabilidade de ser o único ponto de checagem da empresa.</p>
+            </div>
+            <div>
+                <h3>Falta de Reconhecimento</h3>
+                <p><em>"Eles acham que eu fico sentada na frente de um computador só."</em> A diretoria desconhece a complexidade do "Backoffice", tratando a função como administrativa simples, quando é o coração logístico da empresa.</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>Ecossistema Live - Consultoria de Processos & ESG<br>
-        Documento confidencial gerado para análise interna da Casa Goianita.</p>
+        <strong>Ecossistema Live</strong> - Documento Confidencial de Diagnóstico.<br>
+        Este relatório serve como base para o Plano de Ação TO-BE.
     </footer>
 
 </div>
-
-<script>
-    // Script simples para garantir que a interação funcione suavemente
-    const details = document.querySelectorAll("details");
-    details.forEach((targetDetail) => {
-        targetDetail.addEventListener("click", () => {
-            // Opcional: Fechar outros ao abrir um (efeito sanfona)
-            // details.forEach((detail) => {
-            //     if (detail !== targetDetail) {
-            //         detail.removeAttribute("open");
-            //     }
-            // });
-        });
-    });
-</script>
 
 </body>
 </html>
